@@ -22,7 +22,7 @@ import EditProfil from "./pages/profile/EditProfil.js";
 import Contact from "./pages/contact/Contact.js";
 
 axios.defaults.withCredentials = true;
-
+// UPdated
 export const SERVER_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
