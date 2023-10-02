@@ -2,13 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 /**Bug cant read json files */
-const name = JSON.parse(localStorage.getItem("name"));
+let name = "";
 
+const storedName = localStorage.getItem("name");
+
+if (storedName) {
+  try {
+    name = JSON.parse(storedName);
+  } catch (error) {
+    console.error("Erreur lors de l'analyse JSON depuis localStorage : ", error);
+  }
+}
 
 const initialState = {
   isLoggedIn: false,
-  name: name ? name : "",
-  user: { 
+  name: name || "", // Utilisez name ou une valeur par défaut vide si la conversion échoue.
+  user: {
     name: "",
     email: "",
     phone: "",
@@ -16,6 +25,7 @@ const initialState = {
     photo: "",
   },
 };
+
 
 const authSlice = createSlice({
   name: "auth",
